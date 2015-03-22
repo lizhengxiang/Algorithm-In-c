@@ -1,24 +1,23 @@
-typedef char Item;
-//Init stack
-//void STACKinit(int N){
-//	Item stack[N];
-//}
-//stack pointer
-int push = 0;
-Item stack[10];
-//judge stack empty
-int STACKempty(){
-	if(0 == push)
-		return 0;
-	else 
-		return 1;
+#include<stdlib.h>
+
+typedef int Item;
+Item *s;
+int N;
+
+
+void STACKinit(int a){
+	s = malloc(a * sizeof(Item));
+	N = 0;
 }
 
-//stack push
-void STACKpush(Item num){
-	stack[push++] = num;
+int STACKempty(){
+	return N==0;
 }
-//stack pop
+
+void STACKpush(Item a){
+	s[N++] = a;
+}
+
 Item STACKpop(){
-	return stack[push--];
+	return s[--N];
 }

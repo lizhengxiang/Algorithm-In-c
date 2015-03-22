@@ -4,11 +4,9 @@
 
 #include<stdio.h>
 #include"Stack_ADT.h"
-
 int main(){
 	Item c;
-	Item stack[10];
-	//STACKinit(10);
+	STACKinit(10);
 	while((c = getchar()) != '\n'){
 		if(c >= 'a' && c <= 'z')
 			STACKpush(c);
