@@ -1,6 +1,6 @@
 #include<stdlib.h>
 
-typedef int Item;
+//typedef int Item;
 Item *s;
 int N;
 
@@ -11,7 +11,7 @@ void STACKinit(int a){
 }
 
 int STACKempty(){
-	return N==0;
+	return N != 0;
 }
 
 void STACKpush(Item a){
