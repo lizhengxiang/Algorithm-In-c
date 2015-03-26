@@ -15,7 +15,7 @@ int puzzle(int N){
 }
 int main(){
 	int i;
-	for(i = 20; i < 200000; i *= 10){
+	for(i = 19; i < 20000000; i *= 13){
 		printf("%d\t%d\n", i, puzzle(i));
 	}
 	return 0;
