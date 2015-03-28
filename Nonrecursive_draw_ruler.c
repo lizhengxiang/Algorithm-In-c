@@ -13,7 +13,7 @@ void ruler(int l, int r, int h){
 	int i, j, t;
 	for(t = 1, j = 1; t <= h; t++, j += j)
 		for(i = 0; l+j+i <= r; i += j+j)
-			printf("%d ", a[l+j+i] = t);
+			printf(" %d ", a[l+j+i] = t);
 }
 void marks(int n, int h){
 	int i;
@@ -37,6 +37,10 @@ int main(){
 	//printf("\n");
 	for(i = 0; i < 32; i++)
 		printf("___");
+	printf("\n");
+	printf("   ");
+	for(i = 1; i < 32; i++)
+		printf(" %-2d", i);
 	printf("\n");
 	return 0;
 }
