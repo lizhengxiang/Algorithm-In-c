@@ -23,7 +23,7 @@ int createtree(link T){
 
 int main(){
 	link Tree;
-	int i;
+	int i = 0;
 	i = createtree(Tree);
 	if(i)
 		printf("createtree succeed\n");
