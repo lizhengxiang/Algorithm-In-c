@@ -4,9 +4,8 @@
 Item *s;
 int N;
 
-
 void STACKinit(int a){
-	s = malloc(a * sizeof(Item));
+	s = (Item*)malloc(a * sizeof(*s));
 	N = 0;
 }
 
@@ -16,6 +15,7 @@ int STACKempty(){
 
 void STACKpush(Item a){
 	s[N++] = a;
+	//printf("%c", a);
 }
 
 Item STACKpop(){

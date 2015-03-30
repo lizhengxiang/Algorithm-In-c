@@ -1,5 +1,5 @@
 #include<stdlib.h>
-typedef int Item;
+typedef char Item;
 typedef struct STACKnode* link;
 struct STACKnode{
 	Item item;
@@ -8,7 +8,7 @@ struct STACKnode{
 
 static link head;
 link NEW(Item item, link next){
-	link x = malloc(sizeof *x);
+	link x =(link)malloc(sizeof *x);
 	x->item = item;
 	x->next = next;
 	return x;
@@ -22,12 +22,12 @@ int STATICempty(){
 	return head == NULL;
 }
 
-STACKpush(Item item){
+void STACKpush(Item item){
 	head = NEW(item, head);
 }
 
 Item STACKpop(){
-	Item item = head->next;
+	Item item = head->item;
 	link t = head->next;
 	free(head);
 	head = t;
