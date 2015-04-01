@@ -15,13 +15,18 @@ int Rand(){
 
 int bubble(int *a, int l, int r){
 	int i, j;
-	for(i = l; i < r; i++)
+	for(i = l; i < r; i++){
+		int n = 1;
 		for(j = r; j > l; j--)
 			if(a[j] > a[j-1]){
 				int temp = a[j];
 				a[j] = a[j-1];
 				a[j-1] = temp;
+				n = 0;
 			}
+		if(n)
+			break;
+	}
 }
 
 int main(){
