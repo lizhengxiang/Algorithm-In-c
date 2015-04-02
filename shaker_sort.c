@@ -1,13 +1,9 @@
 /*
-For each i from l to r-1, the inner (j) loop puts the minimum element among the
-elements in a[i], . . ., a[r] into a[i] by passing from right to left through the
-elements, compare–exchanging successive elements. The smallest one moves on all such
-comparisons, so it "bubbles" to the beginning. As in selection sort, as the index i travels
-from left to right through the file, the elements to its left are in their final position in the
-array.
-////////////////////////////////////////////////////////////////////////////////////////
-Implement a version of bubble sort that alternates left-to-right and right-to-left passes through
-the data. This (faster but more complicated) algorithm is called shaker sort (see Figure 6.7).
+If we do not use sentinels and then replace every occurrence of "1" by
+"h" in insertion sort, the resulting program h-sorts the file. Adding an
+outer loop to change the increments leads to this compact shellsort
+implementation, which uses the increment sequence 1 4 13 40 121
+364 1093 3280 9841 . . . .
 */
 #include<stdio.h>
 #include<stdio.h>
@@ -17,25 +13,23 @@ int Rand(){
 	return rand() % 1000;
 }
 
+int less(int a, int b){
+	return a > b;
+} 
 int bubble(int *a, int l, int r){
-	int i, j, m, teg;
-	for(i = l; i < r; i++){
-		teg = 1;
-		for(j = r, m = l; j > l && m < r ; j--, m++)
-			if(a[j] > a[j-1]){
-				int temp = a[j];
-				a[j] = a[j-1];
-				a[j-1] = temp;
-				teg = 0;
+	int i, j, h;
+	for(h = 1; h <= (r-1)/9; h = 3*h+1)
+		;  //increment sequence
+	for(; h > 0; h /= 3){
+		for(i = 1+h; i <= r; i++){
+			int j = i;
+			int v = a[i];
+			while(j >= 1+h && less(v, a[j-h])){
+				a[j] = a[j-h];
+				j -= h;
 			}
-			if(a[m] > a[m+1]){
-				int n = a[m];
-				a[m] = a[m+1];
-				a[m+1] = a[m];
-				teg = 0;
-			}
-		if(teg)
-			break;
+			a[j] = v;
+		}
 	}
 }
 
