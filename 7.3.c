@@ -1,0 +1,78 @@
+/*
+If the array has one or fewer elements, do nothing. Otherwise, the array is processed by a
+partition procedure (see Program 7.2), which puts a[i] into position for some i
+between l and r inclusive, and rearranges the other elements such that the recursive calls
+properly finish the sort.
+
+Implement partitioning without using a break statement or a goto statement.
+*/
+#include<stdio.h>
+#include<stdlib.h>
+#define N 100
+
+int Rand(){
+	return rand() % 1000;
+}
+
+int less(int a, int b){
+	return a < b;
+}
+
+void exch(int *a, int *b){
+	int temp;
+	temp = *a;
+	*a = *b;
+	*b = temp;
+}
+/*
+The variable v holds the value of the partitioning element a[r], and i and j are the left
+and right scan pointers, respectively. The partitioning loop increments i and decrements j,
+while maintaining the invariant property that no elements to the left of i are greater than v
+and no elements to the right of j are smaller than v. Once the pointers meet, we complete
+the partitioning by exchanging a[i] and a[r], which puts v into a[i], with no larger
+elements to v's right and no smaller elements to its left.
+The partitioning loop is implemented as an infinite loop, with a break when the pointers
+cross. The test j == l protects against the case that the partitioning element is the
+smallest element in the file.
+*/
+int partition(int *a, int l, int r){
+	int i = l-1, j = r, v = a[r];
+	while(i < j){
+		while(less(a[++i], v)) ;
+		while(less(v, a[--j]) && l != j +1);
+		//if(i >= j)
+		//	break;
+		if(i < j)
+			exch(&a[i], &a[j]);
+	}
+	//a[i] = v;
+	exch(&a[i], &a[r]);
+	//printf(" *%d* ", i);
+	return i;
+}
+void quicksort(int *a, int l, int r){
+	int i;
+	if(r <= l)
+		return ;
+	i = partition(a, l, r);
+	quicksort(a, l, i-1);
+	quicksort(a, i+1, r);
+}
+
+int main(){
+	int a[N];
+	int i; 
+	for(i = 0; i < N; i++){
+		a[i] = Rand();
+		//printf("%d\t", a[i]);
+	}
+	quicksort(a, 0, N-1);
+	for(i = 0; i < N; i++){
+		if(i % 10 == 0)
+			printf("\n");
+		printf("%d\t", a[i]);
+	}
+	printf("\n");
+	return 0;
+}
+
