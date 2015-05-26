@@ -13,7 +13,13 @@ void merge(Item *a, int l, int m, int r){
 		a[k] = (aux[j] < aux[i])?aux[j--]:aux[i++];
 }
 void mergesort(Item *a, int l, int r){
-	
+	int m = (r+l) / 2;
+	if(l >= r)
+		return ;
+	mergesort(a, l, m);
+	mergesort(a, m+1, r);
+	merge(a, l, m, r);
+
 }
 
 int main(){
