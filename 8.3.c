@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 #include<stdio.h>
+=======
+
+>>>>>>> b10b9dec56617306ed20630b6126ca0a000d68c8
 #define N 40
 typedef int Item;
 
