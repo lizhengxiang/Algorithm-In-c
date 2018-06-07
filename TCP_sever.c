@@ -60,6 +60,8 @@ int main()
 	printf("incoming IP: %s\n",  inet_ntoa(clientaddr.sin_addr));
 	//get "net file" -> client_fd
 	
+
+
 	char buf[200] = {0};
 	while(1)
 	{
